@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { submitFeedback, resetFeedbackState } from '../../app/redux/Features/addFeedback/slice';  // Adjust path as needed
 import Loader from '../Loader';
 import NewsLatterBox from './NewsLatterBox';
+import { useAppSelector, useAppDispatch } from "../../app/redux/Store/store";
 
 const StarRating = ({ rating, onChange }) => {
   const handleClick = (value) => {
@@ -29,8 +30,19 @@ const StarRating = ({ rating, onChange }) => {
 };
 
 const Contact = () => {
-  const dispatch = useDispatch();
-  const { isLoading, error } = useSelector((state) => state.feedback);
+  const dispatch = useAppDispatch();
+  interface RootState {
+    feedback: {
+      isLoading: boolean;
+      error: string | null;
+    },
+    getAutherData: {
+      error: string | null;
+      isLoading: boolean;
+      res: any; 
+    }
+  }
+  const { isLoading, error } = useAppSelector((state: RootState) => state.feedback);
   
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
@@ -61,7 +73,7 @@ const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
-      dispatch(submitFeedback({ email, message, rating }));
+      dispatch(submitFeedback({ email, message, rating }) as any);
     }
   };
 

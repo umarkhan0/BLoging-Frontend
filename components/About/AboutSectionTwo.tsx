@@ -5,13 +5,21 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getBlogs } from "@/app/redux/Features/GetBlogs/getBlogsSlice";
 import Loader from "../Loader";
+import { useAppSelector, useAppDispatch } from "../../app/redux/Store/store";
 const AboutSectionTwo = () => {
-  const dispatch = useDispatch();
-  const { res: blogs } = useSelector((state: any) => state.getBlogs);
+  interface RootState {
+    getBlogs: {
+      res: any;
+      isLoading: boolean;
+      error: string | null;
+    }
+  }
+  const dispatch = useAppDispatch();
+  const { res: blogs } = useAppSelector((state: RootState) => state.getBlogs);
   const [randomBlog, setRandomBlog] = useState(null);
 
   useEffect(() => {
-    dispatch(getBlogs());
+    dispatch(getBlogs() as any);
   }, [dispatch]);
 
   useEffect(() => {

@@ -4,35 +4,53 @@ import SharePost from "@/components/Blog/SharePost";
 import TagButton from "@/components/Blog/TagButton";
 import NewsLatterBox from "@/components/Contact/NewsLatterBox";
 import Image from "next/image";
+import { useAppSelector, useAppDispatch } from "../redux/Store/store";
 import { useSearchParams } from 'next/navigation';
 import ErrorPage from "../error/page";
-import { useDispatch, useSelector } from "react-redux";
 import { getProductThunk } from "../redux/Features/getSingleBlog/getSingleBlog";
-import { useEffect, useState  } from "react";
+import { useEffect, useState } from "react";
 import { getAdminProfileThunk } from "../redux/Features/GetPeofile/getprofile";
 import Loader from "@/components/Loader";
 import { relatedProducts } from "../redux/Features/GetRelatedPost/slice";
 import Link from "next/link";
 const BlogSidebarPage = () => {
-  const dispatch = useDispatch();
+  interface RootState {
+    getBlogData: {
+      res: any; // replace 'any' with the actual type of your data
+      isLoading: boolean;
+      error: string | null;
+    };
+    getAutherData: {
+      error: string | null;
+      isLoading: boolean;
+      res: any; // replace 'any' with the actual type of your data
+    };
+    relatedProducts: {
+      res: any; // replace 'any' with the actual type of your data
+      error: string | null;
+    };
+  }
+  const dispatch = useAppDispatch();
   const [getBlogData, setBlogData] = useState(null);
-  const { res: getProduct, isLoading: getProductIsLoading, error: getProductError } = useSelector((state) => state.getBlogData);
-  let [profileData, setProfileData] = useState({});
-  const profile = useSelector((state) => state.getAutherData);
+  const { res: getProduct, isLoading: getProductIsLoading, error: getProductError } = useAppSelector((state: RootState) => state.getBlogData);
+  let [profileData, setProfileData] = useState(null);
+  const profile = useAppSelector((state: RootState) => state.getAutherData);
   let { error: errorProfile, isLoading: loadingProfile, res: resPonseProfile } = profile;
-  let {res: relatedPost , error  } =  useSelector((state) => state.relatedProducts)
-  useEffect(() => {
-    let selectedPro = getProduct?.product?.category;
-    dispatch(relatedProducts(selectedPro) as any);
-
-  }, [getProduct]);
-//   useEffect(() => {
-//     dispatch(relatedProducts(getProduct?.product?.category));
-// }, [getProduct, dispatch]); // Add dispatch here
+  const relatedPostState = useAppSelector((state: RootState) => state.relatedProducts);
+  let { res: relatedPost, error } = relatedPostState;
 
   useEffect(() => {
-    dispatch(getProductThunk());
-    dispatch(getAdminProfileThunk());
+    if (getProduct?.product?.category) {
+      dispatch(relatedProducts(getProduct.product.category));
+    }
+  }, [dispatch, getProduct]);
+  useEffect(() => {
+console.log(relatedPost);
+
+  }, [relatedPost])
+  useEffect(() => {
+    dispatch(getProductThunk() as any);
+    dispatch(getAdminProfileThunk() as any);
   }, [dispatch]);
 
   useEffect(() => {
@@ -70,7 +88,7 @@ const BlogSidebarPage = () => {
                         <div className="mr-4">
                           <div className="relative h-10 w-10 overflow-hidden rounded-full">
                             <Image
-                              src={profileData.image}
+                              src={profileData?.image}
                               alt="author"
                               fill
                             />
@@ -151,18 +169,17 @@ const BlogSidebarPage = () => {
                     <div className="mb-10 w-full overflow-hidden rounded">
                       <div className="relative aspect-[97/60] w-full sm:aspect-[97/44]">
                         <Image
-                          src={getBlogData.image}
-                          alt="image"
+                          src={getBlogData?.image}
+                          alt="profile image"
                           fill
                           className="h-full w-full object-cover object-center"
                         />
                       </div>
                     </div>
                     <div>
-    <p dangerouslySetInnerHTML={{ __html: getBlogData.paragraph }} className="mb-8 text-base font-medium leading-relaxed text-body-color sm:text-lg sm:leading-relaxed lg:text-base lg:leading-relaxed xl:text-lg xl:leading-relaxed">
-    </p>
-</div>
-
+                      <p dangerouslySetInnerHTML={{ __html: getBlogData.paragraph }} className="mb-8 text-base font-medium leading-relaxed text-body-color sm:text-lg sm:leading-relaxed lg:text-base lg:leading-relaxed xl:text-lg xl:leading-relaxed">
+                      </p>
+                    </div>
 
 
 
@@ -353,6 +370,7 @@ const BlogSidebarPage = () => {
                   {relatedPost?.products?.length > 0 ? (
         relatedPost.products.map((post) => (
           <Link
+          key={post._id}
           href={`/blog-sidebar/?id=${post._id}`}
           className="relative block aspect-[37/22] w-full"
         >

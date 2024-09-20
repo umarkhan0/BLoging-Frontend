@@ -23,6 +23,6 @@
       }
     ]
   },
-  "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx", "app/blog-sidebar/page.tsx", "app/redux/Features/GetRelatedPost/slice.js"],
+  "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx", "app/blog-sidebar/page.tsx", "app/redux/Features/GetRelatedPost/slice.ts"],
   "exclude": ["node_modules"]
 }

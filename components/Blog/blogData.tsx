@@ -1,10 +1,7 @@
 import { Blog } from "@/types/blog";
 const blogData: Blog[] = [
-
-
-
 {
-  id: 23,
+  _id: 23,
   imgIntro:
     "Freelancing as a developer offers flexibility and freedom. Here's how to succeed.",
   title: "Top Tips for Becoming a Successful Freelance Developer",

@@ -3,9 +3,8 @@ import axios from 'axios';
 export const apiService = axios.create({
   baseURL: 'https://bloging-server.vercel.app/api/',
 });
-let accessToken = localStorage.getItem("Sign") || ""
   const headers = {
-  'Authorization': `Bearer ${accessToken}`,
+  'Authorization': `Bearer ${"bnmnmn"}`,
   'Content-Type': 'application/json',
 };
 

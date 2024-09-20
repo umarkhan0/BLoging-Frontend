@@ -5,6 +5,7 @@ import { fetchFeedbacks } from "../../app/redux/Features/getfeedback/slice";
 import Loader from "../Loader";
 import { useTheme } from "next-themes";
 import Image from "next/image";
+import { useAppSelector, useAppDispatch } from "../../app/redux/Store/store";
 
 interface Feedback {
   _id: string;
@@ -22,7 +23,8 @@ interface FeedbackState {
 }
 
 const Testimonials = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
+
   const [displayedFeedbacks, setDisplayedFeedbacks] = useState<Feedback[]>([]);
   const { feedbacks, loading, error } = useSelector(
     (state: { feedbackData: FeedbackState }) => state.feedbackData

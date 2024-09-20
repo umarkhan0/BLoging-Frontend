@@ -7,9 +7,22 @@ import { useSelector, useDispatch } from "react-redux";
 import { getBlogs } from "@/app/redux/Features/GetBlogs/getBlogsSlice";
 import { getAdminProfileThunk } from "@/app/redux/Features/GetPeofile/getprofile";
 import Loader from "../Loader"; // Import your Loader component
-
+import { useAppSelector, useAppDispatch } from "../../app/redux/Store/store";
 const Blog = () => {
-  const dispatch = useDispatch();
+  interface RootState {
+    getBlogs: {
+      res: any;
+      isLoading: boolean;
+      error: string | null;
+    }
+    getAutherData: {
+      error: string | null;
+      isLoading: boolean;
+      res: any; 
+    }
+  } 
+   const dispatch = useAppDispatch();
+
   let [allBlogs, setBlogs] = useState([]);
   let [profileData, setProfileData] = useState({});
 
@@ -18,8 +31,8 @@ const Blog = () => {
     dispatch(getAdminProfileThunk());
   }, [dispatch]);
 
-  const blogs = useSelector((state) => state.getBlogs);
-  const profile = useSelector((state) => state.getAutherData);
+  const blogs =  useAppSelector((state: RootState) => state.getBlogs);
+  const profile = useAppSelector((state: RootState) => state.getAutherData);
 
   let { isLoading, res, error } = blogs;
   let { error: errorProfile, isLoading: loadingProfile, res: resPonseProfile } = profile;

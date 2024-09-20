@@ -1,7 +1,7 @@
 
 
 export type Blog = {
-  id: number;
+  _id: number;
   imgIntro: string;
   title: string;
   paragraph: string;
