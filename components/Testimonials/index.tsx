@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchFeedbacks } from "../../app/redux/Features/getfeedback/slice";
 import Loader from "../Loader";
 import { useTheme } from "next-themes";
+import Image from "next/image";
 
 interface Feedback {
   _id: string;
@@ -70,7 +71,7 @@ const Testimonials = () => {
               <span className="font-semibold text-lg text-primary mb-2 block">
                 Testimonials
               </span>
-              <h2 className="font-bold text-3xl text-body-color sm:text-4xl md:text-[40px]  mb-4">
+              <h2 className="font-bold text-3xl text-body-color sm:text-4xl md:text-[40px] mb-4">
                 What Our Users Say
               </h2>
               <p className="text-base text-body-color">
@@ -81,7 +82,7 @@ const Testimonials = () => {
         </div>
         {loading && <Loader />}
         {error && <div>Error loading testimonials: {error}</div>}
-        <div className="flex flex-wrap -mx-4 ">
+        <div className="flex flex-wrap -mx-4">
           {displayedFeedbacks.length > 0 ? (
             displayedFeedbacks.map((feedback) => (
               <div
@@ -105,10 +106,12 @@ const Testimonials = () => {
                   </div>
                   <div className="flex items-center mt-auto">
                     <div className="mr-4">
-                      <img
+                      <Image
                         src="http://localhost:3000/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdln3gflvk%2Fimage%2Fupload%2Fv1726394889%2Fknfvw2os5mjpzvp1fr4o.png&w=1920&q=75"
                         alt="User avatar"
-                        className="w-10 h-10 rounded-full"
+                        width={40} // Set appropriate width
+                        height={40} // Set appropriate height
+                        className="rounded-full"
                       />
                     </div>
                     <div>

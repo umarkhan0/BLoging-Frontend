@@ -8,7 +8,7 @@ import { useSearchParams } from 'next/navigation';
 import ErrorPage from "../error/page";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductThunk } from "../redux/Features/getSingleBlog/getSingleBlog";
-import { useEffect, useState } from "react";
+import { useEffect, useState  } from "react";
 import { getAdminProfileThunk } from "../redux/Features/GetPeofile/getprofile";
 import Loader from "@/components/Loader";
 import { relatedProducts } from "../redux/Features/GetRelatedPost/slice";
@@ -22,18 +22,14 @@ const BlogSidebarPage = () => {
   let { error: errorProfile, isLoading: loadingProfile, res: resPonseProfile } = profile;
   let {res: relatedPost , error  } =  useSelector((state) => state.relatedProducts)
   useEffect(() => {
-    dispatch(relatedProducts(getProduct?.product?.category));
+    let selectedPro = getProduct?.product?.category;
+    dispatch(relatedProducts(selectedPro) as any);
 
   }, [getProduct]);
-  useEffect(() => {
-    if (getProduct?.product?.category) {
-      dispatch(relatedProducts(getProduct.product.category));
-    }
-  }, [dispatch, getProduct]);
-  useEffect(() => {
-console.log(relatedPost);
+//   useEffect(() => {
+//     dispatch(relatedProducts(getProduct?.product?.category));
+// }, [getProduct, dispatch]); // Add dispatch here
 
-  }, [relatedPost])
   useEffect(() => {
     dispatch(getProductThunk());
     dispatch(getAdminProfileThunk());
@@ -163,9 +159,10 @@ console.log(relatedPost);
                       </div>
                     </div>
                     <div>
-                      <p dangerouslySetInnerHTML={{ __html: getBlogData.paragraph }} className="mb-8 text-base font-medium leading-relaxed text-body-color sm:text-lg sm:leading-relaxed lg:text-base lg:leading-relaxed xl:text-lg xl:leading-relaxed">
-                      </p>
-                    </div>
+    <p dangerouslySetInnerHTML={{ __html: getBlogData.paragraph }} className="mb-8 text-base font-medium leading-relaxed text-body-color sm:text-lg sm:leading-relaxed lg:text-base lg:leading-relaxed xl:text-lg xl:leading-relaxed">
+    </p>
+</div>
+
 
 
 

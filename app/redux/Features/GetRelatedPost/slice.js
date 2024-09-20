@@ -2,19 +2,20 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { apiService } from "../../../constant/const";
 import { options } from "../../../constant/const";
 
+// Thunk for fetching related products
 export const relatedProducts = createAsyncThunk(
   "relatedPosts",
-  async (category) => {
+  async (category, { rejectWithValue }) => {
     try {
-      // Sending category as a query parameter in the URL
       const response = await apiService.get(`/products?category=${category}`, options);
       return response.data;
     } catch (error) {
-      throw error.response?.data || error.message;
+      return rejectWithValue(error.response?.data || error.message);
     }
   }
 );
 
+// Slice for managing related products state
 const getAllRelatedPost = createSlice({
   name: "getBlogs",
   initialState: {
@@ -34,9 +35,10 @@ const getAllRelatedPost = createSlice({
       })
       .addCase(relatedProducts.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.error.message;
+        state.error = action.payload; // Use action.payload for rejected error
       });
   },
 });
 
+// Export the reducer
 export default getAllRelatedPost.reducer;
