@@ -6,6 +6,8 @@ import Loader from "../Loader";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import { useAppSelector, useAppDispatch } from "../../app/redux/Store/store";
+// import imagek  from "../../app/images/profileicons.jpg"
+import profileIcon from '../../app/images/profileicons.jpg';
 
 interface Feedback {
   _id: string;
@@ -109,7 +111,7 @@ const Testimonials = () => {
                   <div className="flex items-center mt-auto">
                     <div className="mr-4">
                       <Image
-                        src="http://localhost:3000/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdln3gflvk%2Fimage%2Fupload%2Fv1726394889%2Fknfvw2os5mjpzvp1fr4o.png&w=1920&q=75"
+                        src={profileIcon}
                         alt="User avatar"
                         width={40} // Set appropriate width
                         height={40} // Set appropriate height
