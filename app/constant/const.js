@@ -1,5 +1,5 @@
-export const baseURL = "http://localhost:12312/api/";
+export const baseURL = "https://bloging-server.vercel.app/api/";
 import axios from 'axios';
 export const apiService = axios.create({
-  baseURL: 'http://localhost:12312/api/',
+  baseURL: 'https://bloging-server.vercel.app/api/',
 });
