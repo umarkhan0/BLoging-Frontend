@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-
+import logo from "../../app/images/logo.png";
 const Footer = () => {
   return (
     <>
@@ -15,25 +15,22 @@ const Footer = () => {
               <div className="mb-12 max-w-[360px] lg:mb-16">
                 <Link href="/" className="mb-8 inline-block">
                   <Image
-                    src="/images/logo/logo-2.svg"
+                    src={logo}
                     alt="logo"
-                    className="w-full dark:hidden"
+                    className="w-full  -my-2  dark:hidden"
                     width={140}
                     height={30}
                   />
                   <Image
-                    src="/images/logo/logo.svg"
+                    src={logo}
                     alt="logo"
-                    className="hidden w-full dark:block"
+                    className="hidden  -my-2  w-full dark:block"
                     width={140}
                     height={30}
                   />
                 </Link>
-                <p className="dark:text-body-color-dark mb-9 text-base leading-relaxed text-body-color">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Integer lobortis.
-                </p>
-                <div className="flex items-center">
+              
+                <div className="flex ml-4 items-center">
                   <a
                     href="/"
                     aria-label="social-link"
