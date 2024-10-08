@@ -31,7 +31,8 @@ export const fetchFeedback = createAsyncThunk(
             const response = await apiService.get('/feedback', options);  // Adjust API path as needed
             return response.data;
         } catch (error) {
-            throw error.response.data;
+            // Use optional chaining to prevent error if response is undefined
+            throw error.response?.data || "Failed to fetch feedback";
         }
     }
 );
@@ -44,7 +45,8 @@ export const submitFeedback = createAsyncThunk(
             const response = await apiService.post('/addfeed', feedbackData, options);  // Adjust API path as needed
             return response.data;
         } catch (error) {
-            throw error.response.data;
+            // Use optional chaining to prevent error if response is undefined
+            throw error.response?.data || "Failed to submit feedback";
         }
     }
 );
