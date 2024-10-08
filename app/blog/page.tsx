@@ -142,9 +142,9 @@ const Blog = () => {
   return (
     <section
       id="blog"
-      className="bg-gray-light dark:bg-bg-color-dark py-16 md:py-20 lg:py-28"
+      className="bg-gray-light dark:bg-bg-color-dark  py-16 md:py-20 lg:py-28"
     >
-      <div className="container">
+      <div className="container sm:mt-7 mt-9 ">
         <div className="flex items-center mb-6">
           <input
             type="text"
@@ -156,7 +156,7 @@ const Blog = () => {
           <select
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
-            className="border-stroke dark:text-body-color-dark dark:shadow-two mr-4 w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none transition-all duration-300 focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:focus:border-primary dark:focus:shadow-none"
+            className="border-stroke cursor-pointer dark:text-body-color-dark dark:shadow-two mr-4 w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none transition-all duration-300 focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:focus:border-primary dark:focus:shadow-none"
           >
             {categories.map((category) => (
               <option key={category} value={category}>
