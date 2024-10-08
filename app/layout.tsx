@@ -1,6 +1,6 @@
 "use client";
 import { Provider } from "react-redux"; // Redux Provider
-import {store} from "./redux/Store/store" // Correct path for your Redux store
+import { store } from "./redux/Store/store" // Correct path for your Redux store
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import ScrollToTop from "@/components/ScrollToTop";
@@ -17,16 +17,16 @@ export default function RootLayout({
 }) {
   return (
     <html suppressHydrationWarning lang="en">
-
+      <meta name="monetag" content="4c9fae4e431ec530cf36f85d7066b239"></meta>
       <head />
 
       <body className={`bg-[#FCFCFC] dark:bg-black ${inter.className}`}>
         <Providers>
-        <Provider store={store}>
-          <Header />
-          {children}
-          <Footer />
-          <ScrollToTop />
+          <Provider store={store}>
+            <Header />
+            {children}
+            <Footer />
+            <ScrollToTop />
           </Provider>
         </Providers>
       </body>

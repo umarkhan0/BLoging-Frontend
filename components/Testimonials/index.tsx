@@ -1,14 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { fetchFeedbacks } from "../../app/redux/Features/getfeedback/slice";
 import Loader from "../Loader";
 import { useTheme } from "next-themes";
 import Image from "next/image";
-import { useAppSelector, useAppDispatch } from "../../app/redux/Store/store";
-// import imagek  from "../../app/images/profileicons.jpg"
+import { useAppDispatch } from "../../app/redux/Store/store";
 import profileIcon from '../../app/images/profileicons.jpg';
-
+import ErrorPage from "@/app/error/page";
 interface Feedback {
   _id: string;
   email: string;
@@ -85,9 +84,9 @@ const Testimonials = () => {
           </div>
         </div>
         {loading && <Loader />}
-        {error && <div>Error loading testimonials: {error}</div>}
+       
         <div className="flex flex-wrap -mx-4">
-          {displayedFeedbacks.length > 0 ? (
+          {displayedFeedbacks && displayedFeedbacks?.length > 0 ? (
             displayedFeedbacks.map((feedback) => (
               <div
                 key={feedback._id}
@@ -129,7 +128,7 @@ const Testimonials = () => {
               </div>
             ))
           ) : (
-            <div>No testimonials available</div>
+           <ErrorPage />
           )}
         </div>
       </div>
