@@ -18,6 +18,7 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning lang="en">
       <meta name="monetag" content="71dd813c1ac21dbb26b22c1eed374731"></meta>
+      <script src="https://alwingulla.com/88/tag.min.js" data-zone="109236" async data-cfasync="false"></script>
       <head />
 
       <body className={`bg-[#FCFCFC] dark:bg-black ${inter.className}`}>
