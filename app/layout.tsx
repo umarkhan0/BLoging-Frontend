@@ -17,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html suppressHydrationWarning lang="en">
-      <meta name="monetag" content="4c9fae4e431ec530cf36f85d7066b239"></meta>
+      <meta name="monetag" content="71dd813c1ac21dbb26b22c1eed374731"></meta>
       <head />
 
       <body className={`bg-[#FCFCFC] dark:bg-black ${inter.className}`}>
