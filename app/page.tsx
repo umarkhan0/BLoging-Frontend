@@ -10,10 +10,7 @@ import Hero from '@/components/Hero';
 import Testimonials from '@/components/Testimonials';
 import Script from 'next/script';
 
-export const metadata = {
-  title: 'NEWSPLUSE',
-  // Add other metadata if needed
-};
+
 
 export default function Home() {
   useEffect(() => {
