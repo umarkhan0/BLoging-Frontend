@@ -1,33 +1,24 @@
-'use client';
-
-import { useEffect } from 'react';
-import AboutSectionTwo from '@/components/About/AboutSectionTwo';
-import Blog from '@/components/Blog';
-import ScrollUp from '@/components/Common/ScrollUp';
-import Contact from '@/components/Contact';
-import Hero from '@/components/Hero';
-// import Pricing from '@/components/Pricing'; // Uncomment if needed
-import Testimonials from '@/components/Testimonials';
-import Script from 'next/script';
-
-
+import AboutSectionTwo from "@/components/About/AboutSectionTwo";
+import Blog from "@/components/Blog";
+import ScrollUp from "@/components/Common/ScrollUp";
+import Contact from "@/components/Contact";
+import Hero from "@/components/Hero";
+import Pricing from "@/components/Pricing";
+import Testimonials from "@/components/Testimonials";
+import { Metadata } from "next";
+import Script from "next/script";
+export const metadata: Metadata = {
+  title: "NEWSPLUSE",
+  // other metadata
+};
 
 export default function Home() {
-  useEffect(() => {
-    try {
-      // Render the ad
-      if (typeof window !== 'undefined' && (window as any).adsbygoogle) {
-        (window as any).adsbygoogle.push({});
-      }
-    } catch (e) {
-      console.error('Adsense error:', e);
-    }
-  }, []);
-
+  
   return (
     <>
-      {/* Load Google AdSense script */}
-      <Script
+
+      <ScrollUp />
+       <Script
         id="adsbygoogle-init"
         async
         strategy="afterInteractive"
@@ -48,7 +39,6 @@ export default function Home() {
           data-full-width-responsive="true"
         />
       </div>
-
       <Hero />
       <AboutSectionTwo />
       <Blog />
