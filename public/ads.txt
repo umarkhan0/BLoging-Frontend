@@ -1,0 +1,9 @@
+
+google.com, pub-2186921227701573, DIRECT, f08c47fec0942fa0
+googlesyndication.com, pub-2186921227701573, DIRECT, f08c47fec0942fa0
+
+# Google Ad Manager
+google.com, pub-2186921227701573, DIRECT, f08c47fec0942fa0
+
+# Additional authorized sellers
+# Add more ad networks here as needed

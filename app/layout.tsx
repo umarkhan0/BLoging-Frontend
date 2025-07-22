@@ -17,12 +17,17 @@ export default function RootLayout({
 }) {
   return (
     <html suppressHydrationWarning lang="en">
-      <meta name="monetag" content="71dd813c1ac21dbb26b22c1eed374731"></meta>
+      <meta name="google-adsense-account" content="ca-pub-2186921227701573" />
       <script src="https://alwingulla.com/88/tag.min.js" data-zone="109236" async data-cfasync="false"></script>
       <script  data-cfasync="false" src="//thubanoa.com/1?z=8277756"></script>
 
-      <script  data-cfasync="false" src="//thubanoa.com/1?z=8277789"></script>
-      
+      {/* <script  data-cfasync="false" src="//thubanoa.com/1?z=8277789"></script> */}
+       <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2186921227701573"
+          crossOrigin="anonymous"
+        />
+        
       <head />
 
       <body className={`bg-[#FCFCFC] dark:bg-black ${inter.className}`}>
